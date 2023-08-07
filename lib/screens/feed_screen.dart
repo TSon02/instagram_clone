@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_clone/screens/message_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/post.dart/post_card.dart';
 
@@ -35,7 +36,15 @@ class FeedScreen extends StatelessWidget {
         backgroundColor: mobileBackgroundColor,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) {
+                    return const MessageScreen();
+                  },
+                ),
+              );
+            },
             icon: const Icon(
               Icons.message_outlined,
             ),

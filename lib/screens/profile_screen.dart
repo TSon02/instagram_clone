@@ -58,9 +58,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('page profile');
-    print(widget.uid);
-    print('uid');
+    // print('page profile');
+    // print(widget.uid);
+    // print('uid');
     return isLoading
         ? const Center(
             child: CircularProgressIndicator(),

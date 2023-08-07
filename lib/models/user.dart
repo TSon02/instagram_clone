@@ -8,12 +8,20 @@ class User {
     required this.photoUrl,
     required this.followers,
     required this.following,
+    required this.lastMessage,
+    required this.createAt,
+    required this.lastActive,
+    required this.isOnline,
   });
 
   final String email;
   final String username;
   final String uid;
   final String photoUrl;
+  final String lastMessage;
+  final String createAt;
+  final String lastActive;
+  final bool isOnline;
   final List followers;
   final List following;
 
@@ -25,6 +33,10 @@ class User {
       'photoUrl': photoUrl,
       'followers': followers,
       'following': following,
+      'lastMessage': lastMessage,
+      'isOnline': isOnline,
+      'lastActive': lastActive,
+      'createAt': createAt,
     };
   }
 
@@ -37,6 +49,10 @@ class User {
       photoUrl: snapshot['photoUrl'],
       followers: snapshot['followers'],
       following: snapshot['following'],
+      lastMessage: snapshot['lastMessage'],
+      isOnline: snapshot['isOnline'],
+      lastActive: snapshot['lastActive'],
+      createAt: snapshot['createAt'],
     );
   }
 }

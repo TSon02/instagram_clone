@@ -46,6 +46,8 @@ class _AuthScreenState extends State<AuthScreen> {
         String photoUrl = await StorageMethods()
             .uploadImageToStorage('user_image', imageFile!.absolute, false);
 
+        final time = DateTime.now().millisecondsSinceEpoch.toString();
+
         final user = model.User(
           email: email,
           username: username,
@@ -53,6 +55,10 @@ class _AuthScreenState extends State<AuthScreen> {
           photoUrl: photoUrl,
           followers: [],
           following: [],
+          createAt: time,
+          isOnline: false,
+          lastActive: time,
+          lastMessage: "Hey, I'm using Instagram",
         );
 
         await _firestore.collection('users').doc(userCredential.user!.uid).set(

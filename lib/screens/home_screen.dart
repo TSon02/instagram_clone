@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:instagram_clone/providers/user_provider.dart';
+import 'package:instagram_clone/resources/firestore_methods.dart';
 import 'package:instagram_clone/screens/add_post_screen.dart';
 import 'package:instagram_clone/screens/feed_screen.dart';
 import 'package:instagram_clone/screens/profile_screen.dart';
@@ -23,7 +25,23 @@ class _HomeState extends State<Home> {
     super.initState();
     pageController = PageController();
     print('init state');
-    // addData();
+    addData();
+
+    FirestoreMethods().updateActiveStatus(true);
+
+    SystemChannels.lifecycle.setMessageHandler(
+      (message) async {
+        if (message.toString().contains('paused')) {
+          await FirestoreMethods().updateActiveStatus(false);
+        }
+
+        if (message.toString().contains('resumed')) {
+          await FirestoreMethods().updateActiveStatus(true);
+        }
+
+        return Future.value(message);
+      },
+    );
   }
 
   @override

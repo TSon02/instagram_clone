@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:instagram_clone/models/user.dart' as model;
@@ -12,6 +14,7 @@ class AuthMethods {
     // );
     DocumentSnapshot snapshot =
         await _firestore.collection('users').doc(_auth.currentUser!.uid).get();
+    print(jsonEncode(snapshot.data()));
     while (snapshot.data() == null) {
       await Future.delayed(
         const Duration(seconds: 1),
