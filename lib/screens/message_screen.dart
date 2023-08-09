@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/models/user.dart';
 import 'package:instagram_clone/resources/firestore_methods.dart';
+import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/message.dart/chat_user_card.dart';
 
 class MessageScreen extends StatefulWidget {
@@ -16,7 +17,10 @@ class _MessageScreenState extends State<MessageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Message')),
+      appBar: AppBar(
+        title: const Text('Message'),
+        backgroundColor: mobileBackgroundColor,
+      ),
       body: StreamBuilder(
         stream: FirestoreMethods().getAllUsers(),
         builder: (context, snapshot) {
