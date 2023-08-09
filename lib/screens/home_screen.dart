@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,23 +21,29 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   var _pageIndex = 0;
   late PageController pageController;
+
   @override
   void initState() {
     super.initState();
     pageController = PageController();
-    print('init state');
+    // print('init state');
     addData();
+    // FirestoreMethods().getFirebaseMessagingToken();
 
-    FirestoreMethods().updateActiveStatus(true);
+    // FirestoreMethods().updateActiveStatus(true);
 
     SystemChannels.lifecycle.setMessageHandler(
       (message) async {
-        if (message.toString().contains('paused')) {
-          await FirestoreMethods().updateActiveStatus(false);
-        }
+        // print(message);
 
-        if (message.toString().contains('resumed')) {
-          await FirestoreMethods().updateActiveStatus(true);
+        if (FirebaseAuth.instance.currentUser != null) {
+          if (message.toString().contains('paused')) {
+            await FirestoreMethods().updateActiveStatus(false);
+          }
+
+          if (message.toString().contains('resumed')) {
+            await FirestoreMethods().updateActiveStatus(true);
+          }
         }
 
         return Future.value(message);
@@ -51,8 +58,11 @@ class _HomeState extends State<Home> {
   }
 
   Future<void> addData() async {
-    print('refresh data for user');
+    // print('refresh data for user');
     await Provider.of<UserProvider>(context, listen: false).refreshUser();
+
+    // await FirestoreMethods().getFirebaseMessagingToken();
+    await FirestoreMethods().updateActiveStatus(true);
   }
 
   void navigationTapped(int index) {
@@ -68,7 +78,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     // final user = Provider.of<UserProvider>(context).getUser;
-
     return Scaffold(
       body: PageView(
         controller: pageController,

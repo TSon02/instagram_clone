@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:instagram_clone/resources/firestore_methods.dart';
 import 'package:instagram_clone/screens/message_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/post.dart/post_card.dart';
@@ -15,6 +16,8 @@ class FeedScreen extends StatelessWidget {
       appBar: AppBar(
         title: GestureDetector(
           onTap: () {
+            FirestoreMethods().updateActiveStatus(false);
+
             FirebaseAuth.instance.signOut();
             // Navigator.of(context).push(
             //   MaterialPageRoute(
@@ -63,6 +66,7 @@ class FeedScreen extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
+              // print(snapshot.data!.docs[index].data());
               return PostCard(
                 snap: snapshot.data!.docs[index].data(),
               );

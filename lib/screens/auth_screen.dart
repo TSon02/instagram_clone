@@ -59,6 +59,7 @@ class _AuthScreenState extends State<AuthScreen> {
           isOnline: false,
           lastActive: time,
           lastMessage: "Hey, I'm using Instagram",
+          pushToken: '',
         );
 
         await _firestore.collection('users').doc(userCredential.user!.uid).set(

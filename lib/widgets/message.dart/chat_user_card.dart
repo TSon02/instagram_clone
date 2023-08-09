@@ -69,7 +69,7 @@ class _ChatUserCardState extends State<ChatUserCard> {
                     _message = list.first;
                   }
 
-                  print(_message == null);
+                  // print(_message == null);
 
                   return Text(
                     _message != null

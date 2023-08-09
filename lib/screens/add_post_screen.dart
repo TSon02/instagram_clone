@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:firebase_auth/firebase_auth.dart' as firebase_auth;
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/models/user.dart';
@@ -138,9 +137,9 @@ class _AddPostScreenState extends State<AddPostScreen> {
   @override
   Widget build(BuildContext context) {
     final User user = Provider.of<UserProvider>(context).getUser;
-    print('page add_post');
-    print(user.username);
-    print(firebase_auth.FirebaseAuth.instance.currentUser!.uid);
+    // print('page add_post');
+    // print(user.username);
+    // print(firebase_auth.FirebaseAuth.instance.currentUser!.uid);
     return _file == null
         ? Center(
             child: IconButton(

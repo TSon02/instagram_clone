@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-pickedImage(ImageSource source, int quality, double? maxWidth) async {
+Future<dynamic> pickedImage(
+    ImageSource source, int quality, double? maxWidth) async {
   final picker = ImagePicker();
 
   final XFile? image = await picker.pickImage(
@@ -19,7 +20,7 @@ pickedImage(ImageSource source, int quality, double? maxWidth) async {
   }
 }
 
-pickedMultiImage(int quality) async {
+Future<dynamic> pickedMultiImage(int quality) async {
   final picker = ImagePicker();
 
   final List<XFile> images = await picker.pickMultiImage(

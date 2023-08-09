@@ -6,8 +6,6 @@ import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/utils/utils.dart';
 import 'package:provider/provider.dart';
 
-import 'dart:developer';
-
 class MessageCard extends StatefulWidget {
   const MessageCard({super.key, required this.message});
   final Message message;
@@ -27,7 +25,7 @@ class _MessageCardState extends State<MessageCard> {
   Widget _blueMessage() {
     if (widget.message.read!.isEmpty) {
       FirestoreMethods().updateMessageReadStatus(widget.message);
-      log('succesful');
+      // log('succesful');
     }
 
     return Row(

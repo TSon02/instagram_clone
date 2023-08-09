@@ -14,6 +14,10 @@ class FirestoreMethods {
   final _auth = FirebaseAuth.instance;
   final _firestorage = FirebaseStorage.instance;
 
+  // String _messageToken = '';
+
+  // String get token => _messageToken;
+
   Future<String> uploadPost(
     File file,
     String description,
@@ -150,6 +154,7 @@ class FirestoreMethods {
     await _firestore.collection('users').doc(_auth.currentUser!.uid).update({
       'isOnline': isOnline,
       'lastActive': DateTime.now().millisecondsSinceEpoch.toString(),
+      // 'pushToken': _messageToken,
     });
   }
 
@@ -212,4 +217,21 @@ class FirestoreMethods {
 
     await sendMessage(user, imageUrl, modelmessage.Type.image);
   }
+
+  // Future<dynamic> getFirebaseMessagingToken() async {
+  //   await messaging.requestPermission();
+
+  //   final token = await messaging.getToken();
+  //   print(token);
+  //   if (token == null) {
+  //     return '';
+  //   } else {
+  //     await _firestore
+  //         .collection('users')
+  //         .doc(_auth.currentUser!.uid)
+  //         .update({'pushToken': token});
+  //   }
+
+  //   _messageToken = token;
+  // }
 }

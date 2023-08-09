@@ -12,6 +12,7 @@ class User {
     required this.createAt,
     required this.lastActive,
     required this.isOnline,
+    required this.pushToken,
   });
 
   final String email;
@@ -21,10 +22,10 @@ class User {
   final String lastMessage;
   final String createAt;
   final String lastActive;
+  final String pushToken;
   final bool isOnline;
   final List followers;
   final List following;
-
   Map<String, dynamic> toJson() {
     return {
       'username': username,
@@ -37,6 +38,7 @@ class User {
       'isOnline': isOnline,
       'lastActive': lastActive,
       'createAt': createAt,
+      'pushToken': pushToken,
     };
   }
 
@@ -53,6 +55,7 @@ class User {
       isOnline: snapshot['isOnline'],
       lastActive: snapshot['lastActive'],
       createAt: snapshot['createAt'],
+      pushToken: snapshot['pushToken'],
     );
   }
 }

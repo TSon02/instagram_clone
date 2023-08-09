@@ -37,6 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // print(widget.user.toJson());
     return GestureDetector(
       onTap: () {
         FocusScope.of(context).unfocus();
@@ -303,7 +304,7 @@ class _ChatScreenState extends State<ChatScreen> {
               if (_textEditingController.text.isNotEmpty) {
                 FirestoreMethods().sendMessage(
                   widget.user,
-                  _textEditingController.text,
+                  _textEditingController.text.trim(),
                   Type.text,
                 );
 
